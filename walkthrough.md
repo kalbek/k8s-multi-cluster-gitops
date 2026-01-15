@@ -25,12 +25,12 @@ Manual deletion of `dev-cluster-1` triggered immediate restoration by ArgoCD and
 ## 5. Mission Pack: How to Enjoy the Platform 🎮
 You can now "enjoy" the platform by playing the role of the **Platform Engineer**! 👷‍♂️🚀
 
-### 1. 🏰 View Your Kingdom (ArgoCD UI)
+### 5.1. 🏰 View Your Kingdom (ArgoCD UI)
 -   Go to [https://localhost:8080](https://localhost:8080).
 -   Login with the credentials from the README.
 -   **Enjoy**: Seeing the beautiful green "Synced" status of your entire infrastructure.
 
-### 2. 🧙‍♂️ Cast a Spell (GitOps Scale-Up)
+### 5.2. 🧙‍♂️ Cast a Spell (GitOps Scale-Up)
 -   Edit `infrastructure/claim.yaml`.
 -   Change `nodeCount: 1` to `3`.
 -   Commit and Push:
@@ -41,13 +41,13 @@ You can now "enjoy" the platform by playing the role of the **Platform Engineer*
     ```
 -   **Enjoy**: Watching ArgoCD automatically detect the change and upgrade your cluster without you touching `kubectl`.
 
-### 3. 🏭 Expand the Empire (New Cluster)
+### 5.3. 🏭 Expand the Empire (New Cluster)
 -   Create a new file `infrastructure/prod-claim.yaml` (copy the dev claim).
 -   Name it `prod-cluster`.
 -   Commit and Push.
 -   **Enjoy**: A completely new Kubernetes cluster spinning up automatically.
 
-### 4. 🤖 Terminator Mode (Already Verified)
+### 5.4. 🤖 Terminator Mode (Already Verified)
 -   Delete the cluster manually.
 -   **Enjoy**: Watching it come back from the dead immediately.
 

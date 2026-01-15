@@ -1,6 +1,6 @@
 # ☸️ Kubernetes Multi-Cluster GitOps
 
-![Kubernetes Multi-Cluster GitOps Banner](./tooling_architecture.png)
+![Kubernetes Multi-Cluster GitOps Banner](./k8s_gitops_banner.png)
 
 > **Automated management of multiple Kubernetes clusters using ArgoCD and Crossplane.**
 
