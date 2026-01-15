@@ -138,7 +138,32 @@ Crossplane will now spin up a vCluster automatically!
 
 -   **Check Clusters**: `kubectl get kubernetescluster`
 -   **Check ArgoCD**: Port-forward to access UI: `kubectl port-forward svc/argocd-server -n argocd 8080:443`
--   **Test Auto-healing**: Try deleting a vCluster pod manually and watch it come back!
+### 5. Verify Self-Healing (Chaos Test) 🤖
+Fail the system and watch it recover automatically (like the Terminator!).
+
+1.  **Delete the Cluster**:
+    ```bash
+    kubectl delete kubernetescluster dev-cluster-1
+    ```
+
+2.  **Watch it Come Back**:
+    ArgoCD will detect the configuration drift and re-apply the manifest. Crossplane will then re-provision the cluster.
+    ```bash
+    kubectl get kubernetescluster -w
+    ```
+    *You will see it terminate, and then a new one will appear automatically!*
+
+### ✅ Mission Accomplished
+**System Verified.** 🚀
+
+1.  **Self-Healing Verified**: The chaos test passed. The cluster was deleted manually, and the system automatically reconstructed it.
+2.  **Infrastructure Status**:
+    -   Management Cluster: **Online**
+    -   GitOps Pipeline: **Synced & Healthy**
+    -   Test Cluster: **Provisioned & Auto-Healed**
+
+### 📚 Detailed Walkthrough
+For a deep dive into the architecture, setup verification, and the **Mission Pack** (Fun User Guide), check out the [Project Walkthrough](./walkthrough.md).
 
 ---
 
