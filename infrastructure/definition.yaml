@@ -1,0 +1,47 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xkubernetesclusters.infrastructure.example.org
+spec:
+  group: infrastructure.example.org
+  names:
+    kind: XKubernetesCluster
+    plural: xkubernetesclusters
+  claimNames:
+    kind: KubernetesCluster
+    plural: kubernetesclusters
+  versions:
+  - name: v1alpha1
+    served: true
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              parameters:
+                type: object
+                properties:
+                  nodeCount:
+                    type: integer
+                    description: Number of nodes in the cluster
+                    default: 1
+                  version:
+                    type: string
+                    description: Kubernetes version
+                    default: "v1.27.3"
+                required:
+                - nodeCount
+            required:
+            - parameters
+          status:
+            type: object
+            properties:
+              clusterName:
+                type: string
+                description: The name of the provisioned cluster
+              controlPlaneStatus:
+                type: string
+                description: Status of the control plane

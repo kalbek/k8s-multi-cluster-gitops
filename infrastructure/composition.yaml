@@ -1,0 +1,38 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: vcluster-k8s
+  labels:
+    provider: helm
+    type: vcluster
+spec:
+  compositeTypeRef:
+    apiVersion: infrastructure.example.org/v1alpha1
+    kind: XKubernetesCluster
+  resources:
+  - name: vcluster-helm-release
+    base:
+      apiVersion: helm.crossplane.io/v1beta1
+      kind: Release
+      spec:
+        forProvider:
+          chart:
+            name: vcluster
+            repository: https://charts.loft.sh
+            version: "0.15.0"
+          namespace: vcluster-system # Gets patches to create unique NS
+          values:
+            syncer:
+              extraArgs:
+              - --tls-san=localhost
+    patches:
+    - fromFieldPath: metadata.name
+      toFieldPath: spec.forProvider.namespace
+      transforms:
+      - type: string
+        string:
+          fmt: "vc-%s"
+    - fromFieldPath: metadata.name
+      toFieldPath: spec.forProvider.values.init.helm[0].name
+    readinessChecks:
+    - type: None
