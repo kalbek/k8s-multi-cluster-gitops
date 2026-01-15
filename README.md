@@ -27,8 +27,8 @@ graph TD
         K8sAPI -->|Manage Resources| XP[✈️ Crossplane]
     end
     
-    XP -->|Provisions| VC1[Cluster A (vCluster)]
-    XP -->|Provisions| VC2[Cluster B (vCluster)]
+    XP -->|Provisions| VC1["Cluster A (vCluster)"]
+    XP -->|Provisions| VC2["Cluster B (vCluster)"]
     
     classDef tool fill:#f9f,stroke:#333,stroke-width:2px;
     class ArgoCD,XP tool
@@ -164,6 +164,16 @@ Fail the system and watch it recover automatically (like the Terminator!).
 
 ### 📚 Detailed Walkthrough
 For a deep dive into the architecture, setup verification, and the **Mission Pack** (Fun User Guide), check out the [Project Walkthrough](./walkthrough.md).
+
+---
+
+## 🔮 Future Improvements (Roadmap)
+Here are some good **Issues** to file in the repository to take this project to the next level:
+
+1.  **Security**: Implement **Sealed Secrets** or External Secrets so we don't store plain text credentials.
+2.  **Hybrid Cloud**: Create a Crossplane Composition for **AWS EKS** or **GPC GKE**, allowing us to spin up real cloud clusters alongside vClusters.
+3.  **Automation**: Use **ArgoCD ApplicationSets** to automatically deploy workloads to new clusters as soon as they are created (Label selector).
+4.  **Observability**: Add Prometheus/Grafana stack to the Management Cluster to monitor all child clusters.
 
 ---
 
